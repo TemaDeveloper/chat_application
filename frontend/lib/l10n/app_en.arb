@@ -1,0 +1,7 @@
+{
+    "emailText": "Email",
+    "passwordText": "Password",
+    "loginButton": "Login",
+
+    "hintInputMessaging": "Type a message..."
+}
