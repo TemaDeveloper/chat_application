@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 .DS_Store
 .dart_tool
+=======
+/.DS_Store
+/.dart_tool
+>>>>>>> 8904501 (relocation to frontend directory and UI change in chat)
