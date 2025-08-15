@@ -1,6 +1,6 @@
 import 'package:chat_app/navigation/app_router.dart';
 import 'package:chat_app/navigation/app_router.gr.dart';
-import 'package:chat_app/service_locator.dart';
+import 'package:chat_app/di/injector.dart';
 import 'package:chat_app/theme/styles/texts/app_text_styles.dart';
 import 'package:flutter/material.dart';
 

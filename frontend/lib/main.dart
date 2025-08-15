@@ -2,7 +2,7 @@ import 'package:chat_app/navigation/app_router.dart';
 import 'package:chat_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'l10n/app_localizations.dart';
-import 'package:chat_app/service_locator.dart';
+import 'package:chat_app/di/injector.dart';
 
 
 //TODO: DELETE the ChatController, use Bloc instead

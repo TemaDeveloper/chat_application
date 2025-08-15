@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chat_app/base/bloc/base_bloc_impl.dart';
 import 'package:chat_app/base/bloc/bloc_helper.dart';
-import 'package:chat_app/service_locator.dart';
+import 'package:chat_app/di/injector.dart';
 
 /// B - bloc, E - event, S - state
 

@@ -7,7 +7,7 @@ import 'package:chat_app/theme/styles/texts/app_text_styles.dart';
 import 'package:chat_app/widgets/buttons/custom_elevated_button.dart';
 import 'package:chat_app/widgets/inputs/custom_input_text.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/service_locator.dart';
+import 'package:chat_app/di/injector.dart';
 
 @RoutePage(name: 'LoginRoute')
 class LoginScreen extends StatelessWidget {

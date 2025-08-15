@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chat_app/base/bloc/base_bloc_impl.dart';
-import 'package:chat_app/service_locator.dart';
+import 'package:chat_app/di/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

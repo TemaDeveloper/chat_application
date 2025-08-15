@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:chat_app/entities/snacbar_data.dart';
+import 'package:chat_app/domain/entity/snacbar_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
