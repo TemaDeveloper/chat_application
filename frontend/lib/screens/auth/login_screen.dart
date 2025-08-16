@@ -1,64 +1,288 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chat_app/constants/app_assets.dart';
+import 'package:chat_app/di/injector.dart';
 import 'package:chat_app/l10n/app_localizations.dart';
 import 'package:chat_app/navigation/app_router.dart';
 import 'package:chat_app/navigation/app_router.gr.dart';
-import 'package:chat_app/theme/styles/texts/app_text_styles.dart';
-import 'package:chat_app/widgets/buttons/custom_elevated_button.dart';
+import 'package:chat_app/theme/styles/colors/app_colors.dart';
+import 'package:chat_app/widgets/buttons/social_login_button.dart';
 import 'package:chat_app/widgets/inputs/custom_input_text.dart';
+import 'package:chat_app/widgets/inputs/password_input_text.dart';
+import 'package:chat_app/widgets/signup/background_particle.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_app/di/injector.dart';
+import 'package:flutter_svg/svg.dart';
 
-@RoutePage(name: 'LoginRoute')
+
+@RoutePage(name: "LoginRoute")
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
+    final AppLocalizations appLocalizations = AppLocalizations.of(context)!;
 
     return Scaffold(
-        body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Image.asset(AppAssets.logo, height: 100, width: 100),
-          const SizedBox(height: 20),
-          Text("Let\'s Sign You In!", style: AppTextStyles.robotoTitle),
-          const SizedBox(height: 20),
+          // Background gradient
           Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(20)),
-              color: Colors.grey[200],
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  AppColors.primaryDarkPurple,
+                  AppColors.primaryBlack,
+                ],
+              ),
             ),
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: 220,
+          ),
+          // Floating elements (blurry, multi-colored particles) - Reusing BackgroundParticle widget
+          BackgroundParticle(
+            top: 50,
+            left: -20,
+            opacity: 0.2,
+            width: 120,
+            height: 120,
+            color: AppColors.particlePurple,
+          ),
+          BackgroundParticle(
+            bottom: 100,
+            right: -30,
+            opacity: 0.15,
+            width: 180,
+            height: 180,
+            color: AppColors.particlePink,
+          ),
+          BackgroundParticle(
+            top: 200,
+            right: 50,
+            opacity: 0.25,
+            width: 90,
+            height: 90,
+            color: AppColors.particleDeepPurple,
+          ),
+          BackgroundParticle(
+            top: 150,
+            left: 100,
+            opacity: 0.18,
+            width: 60,
+            height: 60,
+            color: AppColors.particleBlue,
+          ),
+          BackgroundParticle(
+            bottom: 20,
+            left: 50,
+            opacity: 0.22,
+            width: 110,
+            height: 110,
+            color: AppColors.particleGreen,
+          ),
+          BackgroundParticle(
+            top: 300,
+            right: -10,
+            opacity: 0.1,
+            width: 130,
+            height: 130,
+            color: AppColors.particleOrange,
+          ),
+
+          SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomInputText(
-                      label: AppLocalizations.of(context)!.emailText,
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress),
+                // Top Illustration Section - Same as SignupScreen
+                Container(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  height: MediaQuery.of(context).size.height * 0.35,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryBlack.withOpacity(0.4),
+                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(30)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primaryBlack.withOpacity(0.3),
+                        spreadRadius: 5,
+                        blurRadius: 10,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child:
+                      SvgPicture.asset(AppAssets.logo_vertical, height: 200,)
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomInputText(
-                      label: AppLocalizations.of(context)!.passwordText,
-                      controller: _passwordController,
-                      keyboardType: TextInputType.visiblePassword),
-                ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomElevatedButton(
-                    label: AppLocalizations.of(context)!.loginButton,
-                    onPressed: () {
-                      getIt<AppRouter>().replaceAll([HomeRoute()]);
-                    },
+                // Main Content Card - Adapted for LoginScreen
+                Transform.translate(
+                  offset: const Offset(0, -30),
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                    padding: const EdgeInsets.all(25.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.cardBackground.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primaryBlack.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 15,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          appLocalizations.welcomeBackTitle, 
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          appLocalizations.loginSubtitle, 
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const SizedBox(height: 30),
+
+                        // Email Field
+                        Text(
+                          appLocalizations.emailAddressLabel,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(height: 8),
+                        TextInputField(
+                          hintText: appLocalizations.emailHint,
+                          prefixIcon: Icons.email_outlined,
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Password Field
+                        Text(
+                          appLocalizations.passwordLabel,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(height: 8),
+                        PasswordInputField(
+                          hintText: appLocalizations.passwordHint,
+                          prefixIcon: Icons.lock_outline,
+                          suffixIcon: Icons.visibility_off_outlined,
+                        ),
+                        const SizedBox(height: 10),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              // Handle forgot password navigation
+                            },
+                            child: Text(
+                              appLocalizations.forgotPassword,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+
+                        // Login Button (was Sign Up)
+                        SizedBox(
+                          width: double.infinity,
+                          height: 55,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Handle login action
+                            },
+                            style: Theme.of(context).elevatedButtonTheme.style,
+                            child: Ink(
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [AppColors.buttonGradientStart, AppColors.buttonGradientEnd],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                              ),
+                              child: Container(
+                                alignment: Alignment.center,
+                                constraints: const BoxConstraints(minHeight: 55),
+                                child: Text(
+                                  appLocalizations.loginButton, // New localization string for Login button
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.textColorWhite,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+
+                        // "Don't have an account?" text and Sign Up link
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              appLocalizations.dontHaveAccount, 
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                context.router.push(const SignupRoute());
+                              },
+                              child: Text(
+                                appLocalizations.signUpButton,
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: AppColors.buttonGradientStart, 
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20), // Adjust spacing as needed
+
+                        // Or sign in with divider
+                        Row(
+                          children: [
+                            const Expanded(child: Divider(color: AppColors.textColorWhite54)),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Text(
+                                appLocalizations.orSignInWith, 
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                            ),
+                            const Expanded(child: Divider(color: AppColors.textColorWhite54)),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Social Login Buttons - Same as SignupScreen
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SocialLoginButton(
+                              iconPath: AppAssets.google_icon,
+                              onPressed: () {
+                                // Handle Google login
+                              },
+                            ),
+                            SocialLoginButton(
+                              iconPath: AppAssets.facebook_icon,
+                              onPressed: () {
+                                // Handle Facebook login
+                              },
+                            ),
+                            SocialLoginButton(
+                              iconPath: AppAssets.x_icon,
+                              onPressed: () {
+                                // Handle X login
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -66,6 +290,6 @@ class LoginScreen extends StatelessWidget {
           ),
         ],
       ),
-    ));
+    );
   }
 }

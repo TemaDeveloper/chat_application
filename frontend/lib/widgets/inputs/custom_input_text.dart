@@ -1,30 +1,37 @@
+import 'package:chat_app/theme/styles/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomInputText extends StatelessWidget {
-  final String label;
-  final TextEditingController controller;
-  final TextInputType keyboardType;
+class TextInputField extends StatelessWidget {
+  final String? hintText;
+  final IconData? prefixIcon;
+  final TextEditingController? controller; 
 
-  const CustomInputText(
-      {super.key,
-      required this.label,
-      required this.controller,
-      required this.keyboardType});
+  const TextInputField({
+    super.key,
+    this.hintText,
+    this.prefixIcon,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 48,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.inputFieldBackground,
+        borderRadius: BorderRadius.circular(0),
+        border: Border.all(color: AppColors.borderColor), 
+      ),
       child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
+        controller: controller, 
+        style: const TextStyle(color: AppColors.textColorWhite), 
         decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          filled: true,
-          fillColor: Colors.grey[200],
+          hintText: hintText,
+          hintStyle: const TextStyle(color: AppColors.textColorWhite54), 
+          prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: AppColors.textColorWhite70) : null, 
+          contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+          border: InputBorder.none, 
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
         ),
       ),
     );

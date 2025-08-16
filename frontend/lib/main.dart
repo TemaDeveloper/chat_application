@@ -5,9 +5,6 @@ import 'l10n/app_localizations.dart';
 import 'package:chat_app/di/injector.dart';
 
 
-//TODO: DELETE the ChatController, use Bloc instead
-//TODO: Change the Entities to the proper way
-
 void main() {
   setupLocator();
   runApp(
@@ -22,11 +19,12 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = getIt<AppRouter>();
     return MaterialApp.router(
+        
         routerConfig: appRouter.config(),
         localizationsDelegates: const [
           ...AppLocalizations.localizationsDelegates,
         ],
         supportedLocales: AppLocalizations.supportedLocales,
-        theme: AppTheme(context).lightTheme());
+        theme: AppTheme(context).darkTheme());
   }
 }

@@ -3,5 +3,24 @@
     "passwordText": "Password",
     "loginButton": "Login",
 
-    "hintInputMessaging": "Type a message..."
+    "hintInputMessaging": "Type a message...",
+
+    "getStartedFreeTitle": "Get Started",
+    "emailAddressLabel": "Email address",
+    "emailHint": "youmame@gmail.com",
+    "yourNameLabel": "Your name",
+    "yourNameHint": "@youmame",
+    "passwordLabel": "Password",
+    "passwordHint": "**********",
+    "forgotPassword": "Forgot Password?",
+    "signUpButton": "Sign up",
+    "orSignUpWith": "Or sign up with",
+    "goBack": "Go Back",
+
+
+    "welcomeBackTitle": "Welcome Back",
+    "loginSubtitle": "Sign in to your account",
+    "loginButton": "Login",
+    "dontHaveAccount": "Don't have an account?",
+    "orSignInWith": "Or sign in with"
 }
